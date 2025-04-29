@@ -9,12 +9,7 @@ public class Billing extends HotelService {
 
     @Override
     public void generateBill() {
-        int ratePerNight = switch (roomType.toUpperCase()) {
-            case "STANDARD" -> 50000;
-            case "DELUXE" -> 80000;
-            case "SUITE" -> 120000;
-            default -> 0;
-        };
+        int ratePerNight = calculateRate(roomType);
 
         if (ratePerNight == 0) {
             System.out.println("Error: Invalid room type.");
@@ -29,6 +24,24 @@ public class Billing extends HotelService {
         System.out.println("Room Type: " + roomType);
         System.out.println("Stay Duration: " + stayDays + " nights");
         System.out.printf("Total Bill: RWF %,d%n", totalCost);
+    }
+
+    public int calculateRate(String roomType) {
+        int ratePerNight;
+        switch (roomType.toUpperCase()) {
+            case "STANDARD":
+                ratePerNight = 50000;
+                break;
+            case "DELUXE":
+                ratePerNight = 80000;
+                break;
+            case "SUITE":
+                ratePerNight = 120000;
+                break;
+            default:
+                ratePerNight = 0;
+        }
+        return ratePerNight;
     }
 
     @Override
