@@ -1,0 +1,245 @@
+Question1: Site Construction Management System (REAL CONSTRUCTOR)
+Design a Java program using Object-Oriented Programming (OOP) principles to simulate material handling and cost tracking on a construction site. Your task is to create an abstract class called ConstructionMaterial, which will serve as a blueprint for managing building materials, their usage, and cost estimations.
+
+Three concrete classes will extend this abstract class:
+    MaterialDelivery – Handles material deliveries to the site.
+    MaterialUsage – Handles the use of materials during construction.
+    CostEstimation – Handles payment and cost tracking of used materials.
+Requirements
+Abstract Class: ConstructionMaterial
+    Abstract Methods:
+        receiveMaterial() – For processing delivered materials.
+        useMaterial() – For handling consumption of materials.
+        estimateCost() – For calculating cost based on usage.
+    Shared Fields: class is named as COnstructor 
+        contractorId (String) – Unique identifier for the contractor.
+        contractorName (String) – Full name of the contractor.
+        materialQuantity (double) – Quantity of material (in tons).
+        materialBalance (double) – Current available quantity in stock.
+Class: MaterialDelivery (Extends ConstructionMaterial)
+    Functionality:
+        Accepts material delivery only if quantity is between 1 and 10 tons.
+        On successful delivery, updates materialBalance.
+        If invalid, shows an error message with reason.
+ Class: MaterialUsage (Extends ConstructionMaterial)
+    Functionality:
+        Allows material to be used only if the resulting materialBalance remains ≥ 2 tons.
+
+        Subtracts the used quantity from materialBalance.
+
+        If insufficient material is available, an appropriate message is displayed.
+
+Class: CostEstimation (Extends ConstructionMaterial)
+    Functionality:
+
+        Determines the cost per ton:
+
+            If materialQuantity is between 5 and 15 tons → cost = 200,000 per ton.
+
+            If materialQuantity > 15 tons → cost = 180,000 per ton (bulk discount).
+
+        Displays:
+
+            Contractor ID and Name
+
+            Quantity used
+
+            Total cost of materials used (with formatting)
+Implementation Expectations
+    Create a main class to accept user inputs (e.g., contractor name, material quantity).
+    Perform validations for quantity ranges as described.
+    Print informative messages when conditions are not met.
+    Use constructors and getter/setter methods appropriately to encapsulate data.
+======================================================================
+ Question2: Implementing an Abstract Class in a Hotel Management System(LEMIGO HOTEL )
+Question:
+
+Design a Java program using Object-Oriented Programming (OOP) principles to manage hotel guest reservations, checkouts, and billing. You are required to create an abstract class called HotelService which will serve as a blueprint for handling guest-related services.
+
+Three concrete classes will extend this abstract class:
+
+    RoomBooking – Handles room bookings.
+
+    GuestCheckout – Handles guest checkout and room release.
+
+    Billing – Handles bill calculation based on stay duration.
+
+Requirements
+ Abstract Class: HotelService
+
+    Abstract Methods:
+
+        bookRoom()
+
+        checkoutGuest()
+
+        generateBill()
+
+    Common Attributes:
+
+        guestId (String) – Unique ID of the guest.
+
+        guestName (String) – Full name of the guest.
+
+        roomType (String) – Can be either "STANDARD", "DELUXE", or "SUITE".
+
+        stayDays (int) – Number of days the guest plans to stay.
+
+        roomStatus (String) – Either "AVAILABLE" or "OCCUPIED".
+
+Class: RoomBooking (Extends HotelService)
+
+    Functionality:
+
+        Allows booking only if stayDays is between 1 and 30.
+
+        Verifies roomStatus == "AVAILABLE" before confirming a booking.
+
+        On successful booking:
+
+            roomStatus is set to "OCCUPIED".
+
+            Confirmation message is printed.
+
+        Displays an error message if booking fails.
+
+Class: GuestCheckout (Extends HotelService)
+
+    Functionality:
+
+        Processes guest checkout only if the room is currently "OCCUPIED".
+
+        Changes roomStatus to "AVAILABLE" after checkout.
+
+        Displays confirmation message for a successful checkout.
+
+        Displays error if room is already available.
+
+Class: Billing (Extends HotelService)
+
+    Functionality:
+
+        Calculates cost based on roomType and stayDays:
+
+            "STANDARD" → 50,000 per night
+
+            "DELUXE" → 80,000 per night
+
+            "SUITE" → 120,000 per night
+
+        Displays:
+
+            Guest Name and ID
+
+            Room Type and Days Stayed
+
+            Total Cost in readable format
+
+Implementation Notes
+
+    Use a main() method to take guest details and room type via input.
+
+    Perform validations on room status and stay duration.
+
+    Use appropriate access modifiers (private, protected) and getters/setters.
+
+    Use constructors for initializing guest data.
+
+    Ensure proper error handling and meaningful messages for each scenario.
+============================================================
+Question3: Implementing an Abstract Class in a Traffic Fine Management System (Rwanda National Police)
+Question:
+
+Design a Java program using Object-Oriented Programming (OOP) principles to manage traffic violations, 
+fines, and payments for the Rwanda National Police. Create an abstract class called TrafficRecord which 
+will serve as a blueprint for handling traffic-related operations.
+
+Three concrete classes will extend this abstract class:
+
+    ViolationEntry – Handles recording of new traffic violations.
+
+    FineAssessment – Calculates fines based on the severity and violation type.
+
+    FinePayment – Handles payment processing and updates payment status.
+Requirements
+Abstract Class: TrafficRecord
+    Abstract Methods:
+
+        recordViolation()
+
+        assessFine()
+
+        processPayment()
+
+    Common Attributes:
+
+        driverId (String) – National ID or driving license number.
+
+        driverName (String)
+
+        vehiclePlate (String) – Vehicle registration plate.
+
+        violationType (String) – e.g., "SPEEDING", "RED_LIGHT", "NO_HELMET", etc.
+
+        fineAmount (double)
+
+        paymentStatus (String) – "UNPAID" or "PAID"
+
+Class: ViolationEntry (Extends TrafficRecord)
+
+    Functionality:
+
+        Accepts a traffic violation report for a given driver.
+
+        Validates that violationType is one of the allowed types.
+
+        Sets paymentStatus = "UNPAID" initially.
+
+        Prints a confirmation with violation details.
+
+Class: FineAssessment (Extends TrafficRecord)
+
+    Functionality:
+
+        Determines the fine amount based on the violation type:
+
+            "SPEEDING" → 50,000 RWF
+
+            "RED_LIGHT" → 80,000 RWF
+
+            "NO_HELMET" → 30,000 RWF
+
+            "DUI" → 150,000 RWF
+
+        If the violation is unrecognized, displays an error.
+
+        Sets the fineAmount accordingly.
+
+        Displays the fine to be paid with driver and violation details.
+
+Class: FinePayment (Extends TrafficRecord)
+
+    Functionality:
+
+        Allows payment only if paymentStatus == "UNPAID".
+
+        On successful payment:
+
+            Updates paymentStatus = "PAID".
+
+            Displays receipt: Driver name, vehicle plate, paid amount, and payment status.
+
+        Displays an error if payment is attempted on an already paid fine.
+
+ Sample Validations and Input Handling
+
+    violationType must match allowed entries. Use equalsIgnoreCase().
+
+    National ID must be exactly 16 digits (if used as driverId).
+
+    Plate number should follow format (e.g., RAB123D).
+
+    Prevent payment if the fine is already marked as "PAID".
+
+    Accept and validate user input via Scanner in a main() method.
+    
