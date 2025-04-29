@@ -96,6 +96,11 @@ public class Main {
         
         System.out.print("Driver Name: ");
         String driverName = sc.nextLine();
+        while (driverName.isEmpty()) {
+            System.out.print("Driver Name cannot be empty. Please enter again: ");
+            driverName = sc.nextLine();
+            
+        }
         
         String vehiclePlate = getVehiclePlate();
         String violationType = getViolationType();
@@ -111,6 +116,11 @@ public class Main {
         
         System.out.print("Driver Name: ");
         String driverName = sc.nextLine();
+        while (driverName.isEmpty()) {
+            System.out.print("Driver Name cannot be empty. Please enter again: ");
+            driverName = sc.nextLine();
+            
+        }
         
         String vehiclePlate = getVehiclePlate();
         String violationType = getViolationType();
@@ -126,6 +136,11 @@ public class Main {
         
         System.out.print("Driver Name: ");
         String driverName = sc.nextLine();
+        while (driverName.isEmpty()) {
+            System.out.print("Driver Name cannot be empty. Please enter again: ");
+            driverName = sc.nextLine();
+            
+        }
         
         String vehiclePlate = getVehiclePlate();
         String violationType = getViolationType();

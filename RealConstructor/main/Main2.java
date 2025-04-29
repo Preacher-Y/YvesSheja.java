@@ -46,9 +46,19 @@ public class Main2 {
 
         System.out.print("Enter Contractor ID: ");
         String id = sc.nextLine();
+        while (id.isEmpty()) {
+            System.out.print("Contractor ID cannot be empty. Please enter again: ");
+            id = sc.nextLine();
+            
+        }
 
         System.out.print("Enter Contractor Name: ");
         String name = sc.nextLine();
+        while (name.isEmpty()) {
+            System.out.print("Contractor Name cannot be empty. Please enter again: ");
+            name = sc.nextLine();
+            
+        }
 
         while (true) {
             System.out.println("\nWhat Service Do You Desire:");

@@ -47,7 +47,7 @@ public class Main1 {
         String name = sc.nextLine();
 
         String type = getRoomType();
-        int days = getIntInput("Enter Number of Stay Days (1-365): ", 1, 365);
+        int days = getIntInput("Enter Number of Stay Days (1-30): ", 1, 30);
 
         while (true) {
             System.out.println("\nWhat Service Do You Desire:");
