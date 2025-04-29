@@ -1,10 +1,10 @@
-package main;
+package LemigoHotel1.main;
 
 import java.util.Scanner;
 
-import billing.Billing;
-import guestCheckout.GuestCheckout;
-import roomBooking.RoomBooking;
+import LemigoHotel1.billing.Billing;
+import LemigoHotel1.guestCheckout.GuestCheckout;
+import LemigoHotel1.roomBooking.RoomBooking;
 
 public class Main1 {
     private static Scanner sc = new Scanner(System.in);

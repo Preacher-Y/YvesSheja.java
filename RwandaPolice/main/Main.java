@@ -1,12 +1,17 @@
 package RwandaPolice.main;
 
 import java.util.Scanner;
+import java.util.List;
+import java.util.ArrayList;
 import RwandaPolice.violationEntry.ViolationEntry;
 import RwandaPolice.fineAssessment.FineAssessment;
 import RwandaPolice.finePayment.FinePayment;
+
 public class Main {
     private static Scanner sc = new Scanner(System.in);
-    
+    private static List<ViolationEntry> violationList = new ArrayList<>();
+    private static List<FinePayment> fineList = new ArrayList<>();
+
     public static void main(String[] args) {
         System.out.println("\n Welcome To Rwanda National Police - Traffic Fine Management System ");
         System.out.println("--------------------------------------------------------------------");
@@ -18,7 +23,7 @@ public class Main {
             System.out.println("4. Exit");
             System.out.print("Enter your choice (1-4): ");
             int choice = getChoice();
-            
+
             switch (choice) {
                 case 1:
                     recordNewViolation();
@@ -38,7 +43,7 @@ public class Main {
             }
         }
     }
-    
+
     private static int getChoice() {
         while (true) {
             try {
@@ -54,7 +59,7 @@ public class Main {
             }
         }
     }
-    
+
     private static String getViolationType() {
         while (true) {
             System.out.print("Violation Type (SPEEDING/RED_LIGHT/NO_HELMET/DUI): ");
@@ -107,59 +112,84 @@ public class Main {
         
         ViolationEntry violation = new ViolationEntry(driverId, driverName, vehiclePlate, violationType);
         violation.recordViolation();
+        violationList.add(violation);
     }
     
     private static void assessFine() {
         System.out.println("\nEnter Details for Fine Assessment:");
         
         String driverId = getDriverId();
+        String vehiclePlate = getVehiclePlate();
         
-        System.out.print("Driver Name: ");
-        String driverName = sc.nextLine();
-        while (driverName.isEmpty()) {
-            System.out.print("Driver Name cannot be empty. Please enter again: ");
-            driverName = sc.nextLine();
-            
+        ViolationEntry entry = null;
+        for (ViolationEntry v : violationList) {
+            if (v.getDriverId().equals(driverId) && v.getVehiclePlate().equals(vehiclePlate)) {
+                entry = v;
+                break;
+            }
+        }
+        if (entry == null) {
+            System.out.println("Error: No matching violation entry found. Please record the violation first.");
+            return;
         }
         
-        String vehiclePlate = getVehiclePlate();
-        String violationType = getViolationType();
+        // Check existing payment record
+        for (FinePayment p : fineList) {
+            if (p.getDriverId().equals(driverId) && p.getVehiclePlate().equals(vehiclePlate)) {
+                if ("PAID".equals(p.getPaymentStatus())) {
+                    System.out.println("This fine has already been paid.");
+                } else {
+                    System.out.println("\nOutstanding Fine Details:");
+                    System.out.println("Driver: " + p.getDriverName() + " (ID: " + p.getDriverId() + ")");
+                    System.out.println("Vehicle Plate: " + p.getVehiclePlate());
+                    System.out.println("Violation Type: " + p.getViolationType());
+                    System.out.println("Remaining Fine Amount: " + String.format("%,.2f RWF", p.getFineAmount()));
+                    System.out.println("Payment Status: " + p.getPaymentStatus());
+                }
+                return;
+            }
+        }
         
-        FineAssessment assessment = new FineAssessment(driverId, driverName, vehiclePlate, violationType);
+        FineAssessment assessment = new FineAssessment(driverId, entry.getDriverName(), vehiclePlate, entry.getViolationType());
         assessment.assessFine();
+        FinePayment paymentRecord = new FinePayment(driverId, entry.getDriverName(), vehiclePlate, entry.getViolationType(), assessment.getFineAmount(), assessment.getPaymentStatus());
+        fineList.add(paymentRecord);
     }
     
     private static void processPayment() {
         System.out.println("\nEnter Payment Details:");
         
         String driverId = getDriverId();
+        String vehiclePlate = getVehiclePlate();
         
-        System.out.print("Driver Name: ");
-        String driverName = sc.nextLine();
-        while (driverName.isEmpty()) {
-            System.out.print("Driver Name cannot be empty. Please enter again: ");
-            driverName = sc.nextLine();
-            
+        FinePayment payment = null;
+        for (FinePayment p : fineList) {
+            if (p.getDriverId().equals(driverId) && p.getVehiclePlate().equals(vehiclePlate)) {
+                payment = p;
+                break;
+            }
+        }
+        if (payment == null) {
+            System.out.println("Error: No assessed fine found for given ID and vehicle plate. Please assess fine first.");
+            return;
         }
         
-        String vehiclePlate = getVehiclePlate();
-        String violationType = getViolationType();
-        
-        double fineAmount = 0;
+        double paymentAmount = 0;
         while (true) {
-            System.out.print("Fine Amount: ");
+            System.out.print("Payment Amount: ");
             try {
-                fineAmount = Double.parseDouble(sc.nextLine());
-                if (fineAmount > 0) {
+                paymentAmount = Double.parseDouble(sc.nextLine());
+                if (paymentAmount <= 0) {
+                    System.out.println("Payment amount must be greater than 0");
+                } else if (paymentAmount > payment.getFineAmount()) {
+                    System.out.println(String.format("Payment amount cannot exceed remaining fine amount: %,.2f RWF", payment.getFineAmount()));
+                } else {
                     break;
                 }
-                System.out.println("Fine amount must be greater than 0");
             } catch (NumberFormatException e) {
                 System.out.println("Please enter a valid number");
             }
         }
-        
-        FinePayment payment = new FinePayment(driverId, driverName, vehiclePlate, violationType, fineAmount, "UNPAID");
-        payment.processPayment();
+        payment.processPayment(paymentAmount);
     }
 }

@@ -1,4 +1,4 @@
-package hotelService;
+package LemigoHotel1.hotelService;
 
 public abstract class HotelService {
     protected String guestId;

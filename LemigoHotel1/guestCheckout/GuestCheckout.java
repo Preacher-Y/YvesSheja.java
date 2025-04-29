@@ -1,6 +1,6 @@
-package guestCheckout;
+package LemigoHotel1.guestCheckout;
 
-import hotelService.HotelService;
+import LemigoHotel1.hotelService.HotelService;
 
 public class GuestCheckout extends HotelService {
     public GuestCheckout(String guestId, String guestName, String roomType, int stayDays, String roomStatus) {

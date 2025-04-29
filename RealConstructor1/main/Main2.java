@@ -1,10 +1,10 @@
-package main;
+package RealConstructor1.main;
 
 import java.util.Scanner;
 
-import costEstimation.CostEstimation;
-import materialDelivery.MaterialDelivery;
-import materialUsage.MaterialUsage;
+import RealConstructor1.costEstimation.CostEstimation;
+import RealConstructor1.materialDelivery.MaterialDelivery;
+import RealConstructor1.materialUsage.MaterialUsage;
 
 public class Main2 {
     private static Scanner sc = new Scanner(System.in);

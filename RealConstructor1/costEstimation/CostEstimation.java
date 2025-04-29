@@ -1,6 +1,6 @@
-package costEstimation;
+package RealConstructor1.costEstimation;
 
-import constructionMaterial.ConstructionMaterial;
+import RealConstructor1.constructionMaterial.ConstructionMaterial;
 
 public class CostEstimation extends ConstructionMaterial {
     public CostEstimation(String contractorId, String contractorName, double materialQuantity, double materialBalance) {

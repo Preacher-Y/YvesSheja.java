@@ -1,6 +1,6 @@
-package roomBooking;
+package LemigoHotel1.roomBooking;
 
-import hotelService.HotelService;
+import LemigoHotel1.hotelService.HotelService;
 
 public class RoomBooking extends HotelService {
     public RoomBooking(String guestId, String guestName, String roomType, int stayDays, String roomStatus) {

@@ -1,4 +1,4 @@
-package constructionMaterial;
+package RealConstructor1.constructionMaterial;
 
 public abstract class ConstructionMaterial {
     protected String contractorId;

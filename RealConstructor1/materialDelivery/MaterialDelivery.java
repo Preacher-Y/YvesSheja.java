@@ -1,6 +1,6 @@
-package materialDelivery;
+package RealConstructor1.materialDelivery;
 
-import constructionMaterial.ConstructionMaterial;
+import RealConstructor1.constructionMaterial.ConstructionMaterial;
 
 public class MaterialDelivery extends ConstructionMaterial {
     public MaterialDelivery(String contractorId, String contractorName, double materialQuantity, double materialBalance) {

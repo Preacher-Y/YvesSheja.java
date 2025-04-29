@@ -12,6 +12,11 @@ public abstract class TrafficRecord {
     public abstract void assessFine();
     public abstract void processPayment();
 
+    public void processPayment(double paymentAmount) {
+        // Default implementation for partial payment, can be overridden by subclasses
+        System.out.println("Partial payment processing is not implemented for this record type.");
+    }
+
     // Getters and Setters
     public String getDriverId() {
         return driverId;
