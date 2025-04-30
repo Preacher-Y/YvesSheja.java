@@ -7,7 +7,7 @@ echo "1. RealConstructor1"
 echo "2. LemigoHotel1" 
 echo "3. RwandaPolice"
 echo ""
-read -p "Enter choice (1-3): " choice
+read -p "Enter choice (hit Enter to 'Exit'): " choice
 
 case $choice in
   1)
@@ -33,7 +33,7 @@ case $choice in
     ;;
   *)
     echo ""
-    echo "Invalid choice"
+    echo "Bye....."
     exit 1
     ;;
 esac
