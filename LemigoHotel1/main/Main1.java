@@ -26,6 +26,9 @@ public class Main1 {
 
     private static String getRoomType() {
         while (true) {
+            System.out.println("Tariff Details:");
+            System.out.println("--------------\n");
+            System.out.println("1. STANDARD - 50,000 RWF per night\n2. DELUXE - 80,000 RWF per night\n3. SUITE - 120,000 RWF per night\n");
             System.out.print("Enter Room Type (STANDARD/DELUXE/SUITE): ");
             String type = sc.nextLine().toUpperCase();
             if (type.equals("STANDARD") || type.equals("DELUXE") || type.equals("SUITE")) {
@@ -55,7 +58,8 @@ public class Main1 {
             System.out.println("2. Checkout Guest");
             System.out.println("3. Generate Bill");
             System.out.println("4. Exit");
-            int option = getIntInput("Choose option (1-4): ", 1, 4);
+            
+            int option = getIntInput("\nChoose option (1-4): ", 1, 4);
 
             switch (option) {
                 case 1:
@@ -73,11 +77,11 @@ public class Main1 {
                     bill.generateBill();
                     break;
                 case 4:
-                    System.out.println("Thank you for using LEMIGO HOTEL System!");
+                    System.out.println("\nThank you for using LEMIGO HOTEL System!");
                     sc.close();
                     return;
                 default:
-                    System.out.println("Invalid option. Please try again.");
+                    System.out.println("\nInvalid option. Please try again.");
             }
         }
     }

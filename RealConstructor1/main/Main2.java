@@ -73,7 +73,7 @@ public class Main2 {
                 break;
             }
 
-            double qty = getDoubleInput("Enter Quantity (must be positive): ", 0);
+            double qty = getDoubleInput("Enter Quantity: ", 0);
 
             switch (choice) {
                 case 1:

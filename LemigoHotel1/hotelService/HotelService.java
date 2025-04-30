@@ -19,7 +19,6 @@ public abstract class HotelService {
     public abstract void checkoutGuest();
     public abstract void generateBill();
 
-    // Getters
     public String getGuestId() {
         return guestId;
     }
@@ -32,8 +31,11 @@ public abstract class HotelService {
         return roomStatus;
     }
 
-    // Setter
     public void setRoomStatus(String roomStatus) {
         this.roomStatus = roomStatus;
+    }
+
+    public void setStayDays(int stayDays) {
+        this.stayDays = stayDays;
     }
 }
