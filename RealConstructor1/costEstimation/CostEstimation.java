@@ -15,7 +15,7 @@ public class CostEstimation extends ConstructionMaterial {
         System.out.println("\n--- Cost Estimation ---");
         System.out.println("Contractor ID: " + contractorId);
         System.out.println("Contractor Name: " + contractorName);
-        System.out.printf("Quantity Used: %.2f tons%n", materialQuantity);
+        System.out.printf("Quantity Needed: %.2f tons%n", materialQuantity);
         System.out.printf("Total Cost: RWF %, .2f%n", totalCost);
     }
 

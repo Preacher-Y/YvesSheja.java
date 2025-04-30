@@ -1,20 +1,16 @@
-# Use an official OpenJDK runtime as a parent image
 FROM openjdk:11-slim
 
-# Set the working directory in the container
-WORKDIR /app
+# Create a working directory
+WORKDIR /usr/src/app
 
 # Copy all project directories into the container
-COPY LemigoHotel /app/LemigoHotel
-COPY RealConstructor /app/RealConstructor
-COPY RwandaPolice /app/RwandaPolice
+COPY RealConstructor1/ RealConstructor1/
+COPY LemigoHotel1/ LemigoHotel1/
+COPY RwandaPolice/ RwandaPolice/
+COPY start.sh .
 
-# Compile all Java files
-RUN find . -name "*.java" > sources.txt \
-    && javac @sources.txt
+# Make the script executable
+RUN chmod +x start.sh
 
-# Include student ID in the image metadata
-LABEL studentID="26500"
-
-# Default command to run the container (can be overridden)
-CMD ["/bin/bash"]
+# Set the default command
+CMD ["./start.sh"]

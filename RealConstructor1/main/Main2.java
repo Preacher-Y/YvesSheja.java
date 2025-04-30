@@ -8,6 +8,8 @@ import RealConstructor1.materialUsage.MaterialUsage;
 
 public class Main2 {
     private static Scanner sc = new Scanner(System.in);
+    private static boolean materialsReceived = false;
+    private static double materialBalance = 0;
 
     private static int getIntInput(String prompt, int min, int max) {
         while (true) {
@@ -73,20 +75,28 @@ public class Main2 {
                 break;
             }
 
-            double qty = getDoubleInput("Enter Quantity: ", 0);
-
             switch (choice) {
                 case 1:
-                    MaterialDelivery delivery = new MaterialDelivery(id, name, qty, currentBalance);
+                    MaterialDelivery delivery = new MaterialDelivery(id, name, 
+                        getDoubleInput("Enter quantity to receive (1-10 tons): ", 1), 0);
                     delivery.receiveMaterial();
-                    currentBalance = delivery.getMaterialBalance();
+                    materialsReceived = true;
+                    materialBalance = delivery.getMaterialBalance();
                     break;
                 case 2:
-                    MaterialUsage usage = new MaterialUsage(id, name, qty, currentBalance);
-                    usage.useMaterial();
-                    currentBalance = usage.getMaterialBalance();
+                    if (!materialsReceived) {
+                        System.out.println("Error: No materials received yet. Please receive materials first.");
+                    } else if (materialBalance <= 0) {
+                        System.out.println("Error: No materials available. Please receive more materials.");
+                    } else {
+                        double qty = getDoubleInput("Enter Quantity: ", 0);
+                        MaterialUsage usage = new MaterialUsage(id, name, qty, materialBalance);
+                        usage.useMaterial();
+                        materialBalance = usage.getMaterialBalance();
+                    }
                     break;
                 case 3:
+                    double qty = getDoubleInput("Enter Quantity: ", 0);
                     CostEstimation cost = new CostEstimation(id, name, qty, currentBalance);
                     cost.estimateCost();
                     break;
