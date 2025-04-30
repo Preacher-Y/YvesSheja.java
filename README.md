@@ -94,3 +94,14 @@ This project manages traffic violations, fines, and payments. It includes the fo
 - Each project includes a `main()` method for user input and validations.
 - Proper error handling and meaningful messages are implemented.
 - Constructors and getter/setter methods are used for data encapsulation.
+
+## Docker Usage
+
+**Note:**
+We cannot use the Docker GUI for this project because Java applications require TTY (a terminal interface) for proper interaction. The `-it` flag in the Docker command ensures that the container runs in an interactive terminal mode, which is essential for the Java-based console applications in this project.
+
+To access and run this project using Docker in the terminal, use the following command:
+
+```bash
+docker run -it shejayves/oop-project_26500
+```
