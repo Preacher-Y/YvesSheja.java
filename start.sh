@@ -1,5 +1,5 @@
 #!/bin/bash
-
+echo ""
 echo "Which project would you like to run?"
 echo "-----------------------------------"
 echo ""
